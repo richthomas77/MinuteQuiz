@@ -41,54 +41,136 @@ export class MemStorage implements IStorage {
       id: resourceId,
       title: "The First Minute",
       description: "Master the critical first moments of any interaction or presentation",
-      coverImageUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3",
-      totalQuizzes: 1,
+      coverImageUrl: "https://m.media-amazon.com/images/I/71QKQ9mwV7L._SY522_.jpg",
+      totalQuizzes: 2,
       createdAt: new Date(),
     };
     this.resources.set(resourceId, defaultResource);
 
-    // Sample quiz for "The First Minute"
-    const quizId = randomUUID();
-    const sampleQuestions: Question[] = [
+    // First quiz: Framing
+    const framingQuizId = randomUUID();
+    const framingQuestions: Question[] = [
       {
         id: randomUUID(),
-        text: "According to the author, what is the most critical element in making a strong first impression during the first minute of any interaction?",
+        text: "What is 'framing' in the context of the first minute of interaction?",
         options: [
-          { id: randomUUID(), text: "Your body language and posture", letter: "A" },
-          { id: randomUUID(), text: "The words you choose to speak first", letter: "B" },
-          { id: randomUUID(), text: "Your genuine attention and presence", letter: "C" },
-          { id: randomUUID(), text: "Your professional appearance and attire", letter: "D" }
+          { id: randomUUID(), text: "Setting physical boundaries in a room", letter: "A" },
+          { id: randomUUID(), text: "Creating the context and expectation for how the interaction will unfold", letter: "B" },
+          { id: randomUUID(), text: "Taking a photograph to remember the moment", letter: "C" },
+          { id: randomUUID(), text: "Choosing the right words to start a conversation", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "Excellent choice. The author emphasizes that genuine attention and presence create the foundation for meaningful connections, more than any specific technique or appearance."
+        explanation: "Framing is about establishing the context and setting expectations for how the interaction will proceed, helping others understand what to expect."
       },
       {
         id: randomUUID(),
-        text: "What does the book suggest is the primary barrier to making effective first impressions?",
+        text: "Which of the following is an example of effective framing at the start of a meeting?",
         options: [
-          { id: randomUUID(), text: "Lack of confidence", letter: "A" },
-          { id: randomUUID(), text: "Being too focused on yourself rather than the other person", letter: "B" },
-          { id: randomUUID(), text: "Not having enough time to prepare", letter: "C" },
-          { id: randomUUID(), text: "Speaking too quickly", letter: "D" }
+          { id: randomUUID(), text: "Jumping straight into the agenda without introduction", letter: "A" },
+          { id: randomUUID(), text: "Clearly stating the purpose, expected outcomes, and time commitment", letter: "B" },
+          { id: randomUUID(), text: "Asking everyone to introduce themselves for 10 minutes", letter: "C" },
+          { id: randomUUID(), text: "Starting with a long personal story", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "The book emphasizes that when we're too focused on how we appear or what we'll say next, we miss the opportunity to truly connect with the other person."
+        explanation: "Effective framing involves clearly communicating the purpose, what you hope to achieve, and the time investment required, so everyone knows what to expect."
+      },
+      {
+        id: randomUUID(),
+        text: "Why is framing particularly important in the first minute?",
+        options: [
+          { id: randomUUID(), text: "It helps you appear more professional", letter: "A" },
+          { id: randomUUID(), text: "It reduces anxiety and uncertainty for everyone involved", letter: "B" },
+          { id: randomUUID(), text: "It makes you sound more intelligent", letter: "C" },
+          { id: randomUUID(), text: "It saves time later in the conversation", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "Framing in the first minute reduces anxiety and uncertainty by helping everyone understand what's happening and what's expected, creating psychological safety."
       }
     ];
 
-    // Set correct answer IDs
-    sampleQuestions[0].correctAnswerId = sampleQuestions[0].options[2].id; // "Your genuine attention and presence"
-    sampleQuestions[1].correctAnswerId = sampleQuestions[1].options[1].id; // "Being too focused on yourself"
+    // Set correct answer IDs for framing quiz
+    framingQuestions[0].correctAnswerId = framingQuestions[0].options[1].id;
+    framingQuestions[1].correctAnswerId = framingQuestions[1].options[1].id;
+    framingQuestions[2].correctAnswerId = framingQuestions[2].options[1].id;
 
-    const defaultQuiz: Quiz = {
-      id: quizId,
+    const framingQuiz: Quiz = {
+      id: framingQuizId,
       resourceId: resourceId,
-      title: "Chapter 1: Making First Impressions",
-      description: "Test your understanding of the key concepts from the first chapter",
-      questions: sampleQuestions,
+      title: "Framing: Setting the Stage",
+      description: "Master the art of framing interactions to create clarity and reduce anxiety",
+      questions: framingQuestions,
       createdAt: new Date(),
     };
-    this.quizzes.set(quizId, defaultQuiz);
+    this.quizzes.set(framingQuizId, framingQuiz);
+
+    // Second quiz: GPS Method
+    const gpsQuizId = randomUUID();
+    const gpsQuestions: Question[] = [
+      {
+        id: randomUUID(),
+        text: "What does GPS stand for in the context of first-minute interactions?",
+        options: [
+          { id: randomUUID(), text: "Goals, Process, Success", letter: "A" },
+          { id: randomUUID(), text: "Greet, Present, Summarize", letter: "B" },
+          { id: randomUUID(), text: "Goal, Path, Success metrics", letter: "C" },
+          { id: randomUUID(), text: "Global Positioning System", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "GPS stands for Goal, Path, and Success metrics - a framework for clearly communicating what you want to achieve, how you'll get there, and how you'll know you've succeeded."
+      },
+      {
+        id: randomUUID(),
+        text: "In the GPS method, what should you communicate about the 'Goal'?",
+        options: [
+          { id: randomUUID(), text: "Your personal career objectives", letter: "A" },
+          { id: randomUUID(), text: "What you want to accomplish in this specific interaction", letter: "B" },
+          { id: randomUUID(), text: "Long-term business strategy", letter: "C" },
+          { id: randomUUID(), text: "Your schedule for the day", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "The Goal component focuses specifically on what you want to accomplish in this particular interaction or meeting."
+      },
+      {
+        id: randomUUID(),
+        text: "What does the 'Path' element of GPS help communicate?",
+        options: [
+          { id: randomUUID(), text: "The physical route to your destination", letter: "A" },
+          { id: randomUUID(), text: "Your career progression plan", letter: "B" },
+          { id: randomUUID(), text: "The process or approach you'll use to achieve the goal", letter: "C" },
+          { id: randomUUID(), text: "The agenda for the entire week", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "The Path explains the process, approach, or methodology you'll use to achieve the stated goal, giving others clarity on how the interaction will unfold."
+      },
+      {
+        id: randomUUID(),
+        text: "Why are 'Success metrics' important in the GPS method?",
+        options: [
+          { id: randomUUID(), text: "They help you track financial performance", letter: "A" },
+          { id: randomUUID(), text: "They provide clear criteria for knowing when the goal has been achieved", letter: "B" },
+          { id: randomUUID(), text: "They impress others with your analytical skills", letter: "C" },
+          { id: randomUUID(), text: "They help you plan future meetings", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "Success metrics provide clear, measurable criteria so everyone knows exactly what constitutes successful completion of the interaction or meeting."
+      }
+    ];
+
+    // Set correct answer IDs for GPS quiz
+    gpsQuestions[0].correctAnswerId = gpsQuestions[0].options[2].id;
+    gpsQuestions[1].correctAnswerId = gpsQuestions[1].options[1].id;
+    gpsQuestions[2].correctAnswerId = gpsQuestions[2].options[2].id;
+    gpsQuestions[3].correctAnswerId = gpsQuestions[3].options[1].id;
+
+    const gpsQuiz: Quiz = {
+      id: gpsQuizId,
+      resourceId: resourceId,
+      title: "GPS Method: Goal, Path, Success",
+      description: "Learn to use the GPS framework for clear communication and successful outcomes",
+      questions: gpsQuestions,
+      createdAt: new Date(),
+    };
+    this.quizzes.set(gpsQuizId, gpsQuiz);
   }
 
   async getResources(): Promise<Resource[]> {
@@ -104,6 +186,7 @@ export class MemStorage implements IStorage {
     const resource: Resource = {
       ...insertResource,
       id,
+      totalQuizzes: insertResource.totalQuizzes ?? 0,
       createdAt: new Date(),
     };
     this.resources.set(id, resource);
@@ -143,7 +226,7 @@ export class MemStorage implements IStorage {
     // Update resource quiz count
     const resource = this.resources.get(insertQuiz.resourceId);
     if (resource) {
-      resource.totalQuizzes = (resource.totalQuizzes || 0) + 1;
+      resource.totalQuizzes = (resource.totalQuizzes ?? 0) + 1;
       this.resources.set(resource.id, resource);
     }
     
@@ -155,8 +238,8 @@ export class MemStorage implements IStorage {
     if (quiz) {
       // Update resource quiz count
       const resource = this.resources.get(quiz.resourceId);
-      if (resource && resource.totalQuizzes > 0) {
-        resource.totalQuizzes = resource.totalQuizzes - 1;
+      if (resource && (resource.totalQuizzes ?? 0) > 0) {
+        resource.totalQuizzes = (resource.totalQuizzes ?? 0) - 1;
         this.resources.set(resource.id, resource);
       }
     }

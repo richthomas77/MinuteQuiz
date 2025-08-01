@@ -1,23 +1,52 @@
 import { useQuery } from "@tanstack/react-query";
-import { BookOpen, Play, Book, Plus, Clock } from "lucide-react";
+import { BookOpen, Play, Book, Plus, Clock, Brain, Target } from "lucide-react";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { type Resource } from "@shared/schema";
+import { type Resource, type Quiz } from "@shared/schema";
+
+function QuizList({ resourceId }: { resourceId: string }) {
+  const { data: quizzes } = useQuery<Quiz[]>({
+    queryKey: ["/api/resources", resourceId, "quizzes"],
+    enabled: !!resourceId,
+  });
+
+  if (!quizzes || quizzes.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="space-y-4">
+      {quizzes.map((quiz, index) => (
+        <Card key={quiz.id} className="border-2 border-neutral-200 hover:border-primary transition-colors">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center mr-3">
+                  {index === 0 ? <Brain className="text-white" size={20} /> : <Target className="text-white" size={20} />}
+                </div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900">{quiz.title}</h4>
+                  <p className="text-sm text-neutral-600">{quiz.description}</p>
+                </div>
+              </div>
+              <Link href={`/resources/${resourceId}/quiz/${quiz.id}`}>
+                <Button size="sm">
+                  <Play className="mr-2" size={16} />
+                  Start
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const { data: resources, isLoading } = useQuery<Resource[]>({
     queryKey: ["/api/resources"],
-  });
-
-  const { data: firstResource } = useQuery<Resource>({
-    queryKey: ["/api/resources", resources?.[0]?.id],
-    enabled: !!resources?.[0]?.id,
-  });
-
-  const { data: quizzes } = useQuery({
-    queryKey: ["/api/resources", firstResource?.id, "quizzes"],
-    enabled: !!firstResource?.id,
   });
 
   if (isLoading) {
@@ -59,40 +88,39 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {resources?.map((resource) => (
-              <Card key={resource.id} className="bg-accent-gradient overflow-hidden transform hover:scale-105 transition-transform cursor-pointer">
-                <div className="h-48 bg-cover bg-center relative" style={{
-                  backgroundImage: `url('${resource.coverImageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400'}')`
-                }}>
-                  <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-                    <div className="text-center text-white">
-                      <Clock size={48} className="mx-auto mb-2" />
-                      <h3 className="text-2xl font-bold">{resource.title}</h3>
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-6 text-white">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">Featured</span>
-                    <span className="text-sm opacity-90">{resource.totalQuizzes} Quizzes</span>
-                  </div>
-                  <p className="text-sm opacity-90 mb-4">{resource.description}</p>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center text-sm">
-                      <div className="w-24 bg-white bg-opacity-20 rounded-full h-2 mr-2">
-                        <div className="bg-white h-2 rounded-full" style={{ width: "60%" }}></div>
+              <div key={resource.id} className="space-y-6">
+                {/* Resource Card */}
+                <Card className="bg-accent-gradient overflow-hidden transform hover:scale-105 transition-transform">
+                  <div className="h-48 bg-cover bg-center relative" style={{
+                    backgroundImage: `url('${resource.coverImageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400'}')`
+                  }}>
+                    <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+                      <div className="text-center text-white">
+                        <BookOpen size={48} className="mx-auto mb-2" />
+                        <h3 className="text-2xl font-bold">{resource.title}</h3>
                       </div>
-                      <span className="text-xs">60%</span>
                     </div>
-                    {quizzes && quizzes.length > 0 && (
-                      <Link href={`/resources/${resource.id}/quiz/${quizzes[0].id}`}>
-                        <Button size="sm" className="bg-white text-accent hover:bg-neutral-100">
-                          Start Quiz
-                        </Button>
-                      </Link>
-                    )}
                   </div>
-                </CardContent>
-              </Card>
+                  <CardContent className="p-6 text-white">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium">Featured</span>
+                      <span className="text-sm opacity-90">{resource.totalQuizzes} Quizzes</span>
+                    </div>
+                    <p className="text-sm opacity-90 mb-4">{resource.description}</p>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center text-sm">
+                        <div className="w-24 bg-white bg-opacity-20 rounded-full h-2 mr-2">
+                          <div className="bg-white h-2 rounded-full" style={{ width: "60%" }}></div>
+                        </div>
+                        <span className="text-xs">60%</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Quiz Cards for this resource */}
+                <QuizList resourceId={resource.id} />
+              </div>
             ))}
 
             {/* Add New Resource Card */}
