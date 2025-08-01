@@ -98,7 +98,7 @@ export default function Quiz() {
         {/* Quiz Header */}
         <Card className="mb-8">
           <CardContent className="p-6">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-6">
               <div className="flex items-center">
                 <Button variant="ghost" size="sm" onClick={() => setLocation("/")} className="mr-4">
                   <ArrowLeft size={18} />
@@ -109,10 +109,20 @@ export default function Quiz() {
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-sm text-neutral-600">
+                <p className="text-sm text-neutral-600 mb-2">
                   Question {currentQuestionIndex + 1} of {questions.length}
                 </p>
-                <Progress value={progressPercent} className="w-32 mt-1" />
+                <div className="text-xs text-neutral-500 mb-1">{Math.round(progressPercent)}% Complete</div>
+              </div>
+            </div>
+            
+            {/* Enhanced Progress Bar */}
+            <div className="w-full">
+              <Progress value={progressPercent} className="h-3 mb-2" />
+              <div className="flex justify-between text-xs text-neutral-500">
+                <span>Start</span>
+                <span className="font-medium">Question {currentQuestionIndex + 1}</span>
+                <span>Complete</span>
               </div>
             </div>
           </CardContent>
@@ -189,10 +199,19 @@ export default function Quiz() {
                     {isCorrect ? "✓" : "✗"}
                   </span>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h4 className={`font-semibold mb-2 ${isCorrect ? "text-secondary" : "text-destructive"}`}>
                     {isCorrect ? "Correct!" : "Incorrect"}
                   </h4>
+                  {!isCorrect && (
+                    <div className="mb-3 p-3 bg-white rounded-lg border-l-4 border-secondary">
+                      <p className="text-sm font-medium text-neutral-700 mb-1">Correct Answer:</p>
+                      <p className="text-neutral-900">
+                        <strong>{currentQuestion.options.find(opt => opt.id === currentQuestion.correctAnswerId)?.letter}.</strong>{' '}
+                        {currentQuestion.options.find(opt => opt.id === currentQuestion.correctAnswerId)?.text}
+                      </p>
+                    </div>
+                  )}
                   <p className="text-neutral-700">{currentQuestion.explanation}</p>
                 </div>
               </div>
