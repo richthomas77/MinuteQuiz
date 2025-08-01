@@ -4,6 +4,12 @@
 
 This is a full-stack learning platform that transforms reading materials into interactive quiz experiences. The application allows users to upload documents (PDF, DOCX, TXT) which are parsed into quiz questions, and provides a comprehensive quiz-taking interface with progress tracking and results analysis. Built with React on the frontend and Express on the backend, it features a modern UI using shadcn/ui components and comprehensive quiz management capabilities.
 
+### Current Content
+- **"The First Minute" by Chris Fenning**: Features two practice quizzes:
+  - "Framing: Setting the Stage" - 3 questions about setting context and expectations
+  - "GPS Method: Goal, Path, Success" - 4 questions about the GPS communication framework
+- Uses the actual book cover image provided by the user
+
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.

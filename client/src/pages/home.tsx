@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { type Resource, type Quiz } from "@shared/schema";
+import bookCoverImage from "@assets/TFM_1754083535157.png";
 
 function QuizList({ resourceId }: { resourceId: string }) {
   const { data: quizzes } = useQuery<Quiz[]>({
@@ -92,7 +93,7 @@ export default function Home() {
                 {/* Resource Card */}
                 <Card className="bg-accent-gradient overflow-hidden transform hover:scale-105 transition-transform">
                   <div className="h-48 bg-cover bg-center relative" style={{
-                    backgroundImage: `url('${resource.coverImageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400'}')`
+                    backgroundImage: `url('${resource.title === "The First Minute" ? bookCoverImage : resource.coverImageUrl || 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=400'}')`
                   }}>
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
                       <div className="text-center text-white">

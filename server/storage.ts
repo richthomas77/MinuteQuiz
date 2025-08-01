@@ -41,7 +41,7 @@ export class MemStorage implements IStorage {
       id: resourceId,
       title: "The First Minute",
       description: "Master the critical first moments of any interaction or presentation",
-      coverImageUrl: "https://m.media-amazon.com/images/I/71QKQ9mwV7L._SY522_.jpg",
+      coverImageUrl: "/src/assets/TFM_1754083535157.png",
       totalQuizzes: 2,
       createdAt: new Date(),
     };
