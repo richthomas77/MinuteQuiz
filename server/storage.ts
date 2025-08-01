@@ -47,51 +47,77 @@ export class MemStorage implements IStorage {
     };
     this.resources.set(resourceId, defaultResource);
 
-    // First quiz: Framing
+    // First quiz: Framing - Based on authentic study guide content
     const framingQuizId = randomUUID();
     const framingQuestions: Question[] = [
       {
         id: randomUUID(),
-        text: "What is 'framing' in the context of the first minute of interaction?",
+        text: "Project Update: 'Hey, about that new project... I was looking at the data, and it's pretty complex. Lots of moving parts, and we got some feedback from marketing yesterday. Anyway, it's definitely something we need to think about.' Which of the following best uses framing for this scenario?",
         options: [
-          { id: randomUUID(), text: "Setting physical boundaries in a room", letter: "A" },
-          { id: randomUUID(), text: "Creating the context and expectation for how the interaction will unfold", letter: "B" },
-          { id: randomUUID(), text: "Taking a photograph to remember the moment", letter: "C" },
-          { id: randomUUID(), text: "Choosing the right words to start a conversation", letter: "D" }
+          { id: randomUUID(), text: "Can we talk about the new project? It's complex, and I need you to think about it.", letter: "A" },
+          { id: randomUUID(), text: "Hi, regarding the 'Phoenix' project, I need to update you because we've identified a major risk.", letter: "B" },
+          { id: randomUUID(), text: "I heard some things about the project that are complex and involve marketing feedback.", letter: "C" },
+          { id: randomUUID(), text: "Let's discuss project data and marketing feedback; it's important.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "Framing is about establishing the context and setting expectations for how the interaction will proceed, helping others understand what to expect."
+        explanation: "This option clearly states the context ('Phoenix project'), a specific intent ('need to update you'), and the crucial key message ('identified a major risk'). Options A and D are too vague, and C provides context but no clear intent or point."
       },
       {
         id: randomUUID(),
-        text: "Which of the following is an example of effective framing at the start of a meeting?",
+        text: "Request for a Meeting: 'Can we chat? I have a few things I want to go over.' Which of the following best uses framing for this scenario?",
         options: [
-          { id: randomUUID(), text: "Jumping straight into the agenda without introduction", letter: "A" },
-          { id: randomUUID(), text: "Clearly stating the purpose, expected outcomes, and time commitment", letter: "B" },
-          { id: randomUUID(), text: "Asking everyone to introduce themselves for 10 minutes", letter: "C" },
-          { id: randomUUID(), text: "Starting with a long personal story", letter: "D" }
+          { id: randomUUID(), text: "Do you have a few minutes? I'd like to update you on the budget and get your input on staffing.", letter: "A" },
+          { id: randomUUID(), text: "I need to talk to you about some things. When are you free?", letter: "B" },
+          { id: randomUUID(), text: "I have several topics that need to be discussed, requiring about 10 minutes of your time.", letter: "C" },
+          { id: randomUUID(), text: "Can we chat about everything on my mind today?", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "Effective framing involves clearly communicating the purpose, what you hope to achieve, and the time investment required, so everyone knows what to expect."
+        explanation: "This option provides a clear intent by stating the purpose and scope of the conversation ('update you on the budget and get your input on staffing'), and sets a time expectation ('a few minutes') which is also a form of framing the interaction."
       },
       {
         id: randomUUID(),
-        text: "Why is framing particularly important in the first minute?",
+        text: "Hiring Issue: 'So, the new hire for the sales team? We're having some trouble getting them onboarded. HR is saying something about paperwork.' Which of the following best uses framing for this scenario?",
         options: [
-          { id: randomUUID(), text: "It helps you appear more professional", letter: "A" },
-          { id: randomUUID(), text: "It reduces anxiety and uncertainty for everyone involved", letter: "B" },
-          { id: randomUUID(), text: "It makes you sound more intelligent", letter: "C" },
-          { id: randomUUID(), text: "It saves time later in the conversation", letter: "D" }
+          { id: randomUUID(), text: "Regarding the new sales hire, I need your advice because there's an issue with their onboarding paperwork.", letter: "A" },
+          { id: randomUUID(), text: "The sales team onboarding has paperwork issues that HR mentioned.", letter: "B" },
+          { id: randomUUID(), text: "There's a problem with a new hire; I need to talk to you about it.", letter: "C" },
+          { id: randomUUID(), text: "The new sales hire can't start because of HR.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "Framing in the first minute reduces anxiety and uncertainty by helping everyone understand what's happening and what's expected, creating psychological safety."
+        explanation: "This option establishes the context ('new sales hire'), the intent ('need your advice'), and the key message ('issue with their onboarding paperwork') concisely. The other options are either too vague or lack a clear request for action/advice."
+      },
+      {
+        id: randomUUID(),
+        text: "Budget Concern: 'About the budget for next quarter... it's looking a bit tight. I've been reviewing the numbers, and there are some unexpected expenses.' Which of the following best uses framing for this scenario?",
+        options: [
+          { id: randomUUID(), text: "The budget is tight. I need help reviewing expenses.", letter: "A" },
+          { id: randomUUID(), text: "Regarding the Q3 budget, I need your approval for additional funds as we're currently over budget.", letter: "B" },
+          { id: randomUUID(), text: "We need to discuss financial numbers and unexpected costs for the next quarter.", letter: "C" },
+          { id: randomUUID(), text: "The budget for next quarter looks bad, so I'm bringing it to your attention.", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "This option provides clear context ('Q3 budget'), definite intent ('need your approval'), and a direct key message ('currently over budget,' implying a need for additional funds). Other options are too general or don't specify the intent or what is needed."
+      },
+      {
+        id: randomUUID(),
+        text: "New Policy Announcement: 'There's a new policy coming out. You'll need to read it. It's pretty long.' Which of the following best uses framing for this scenario?",
+        options: [
+          { id: randomUUID(), text: "I'm letting you know about the new 'Remote Work' policy; it requires everyone to be in the office three days a week.", letter: "A" },
+          { id: randomUUID(), text: "The new policy is long, and you have to read it.", letter: "B" },
+          { id: randomUUID(), text: "There's a new policy that needs your attention, and it's quite detailed.", letter: "C" },
+          { id: randomUUID(), text: "I need you to review a new document that's been released.", letter: "D" }
+        ],
+        correctAnswerId: "",
+        explanation: "This option immediately identifies the context ('new Remote Work policy'), the intent ('letting you know about'), and the direct key message ('requires everyone to be in the office three days a week'). The other options lack specific context or key message details."
       }
     ];
 
-    // Set correct answer IDs for framing quiz
-    framingQuestions[0].correctAnswerId = framingQuestions[0].options[1].id;
-    framingQuestions[1].correctAnswerId = framingQuestions[1].options[1].id;
-    framingQuestions[2].correctAnswerId = framingQuestions[2].options[1].id;
+    // Set correct answer IDs for framing quiz (based on answer key: B, A, A, B, A)
+    framingQuestions[0].correctAnswerId = framingQuestions[0].options[1].id; // B
+    framingQuestions[1].correctAnswerId = framingQuestions[1].options[0].id; // A  
+    framingQuestions[2].correctAnswerId = framingQuestions[2].options[0].id; // A
+    framingQuestions[3].correctAnswerId = framingQuestions[3].options[1].id; // B
+    framingQuestions[4].correctAnswerId = framingQuestions[4].options[0].id; // A
 
     const framingQuiz: Quiz = {
       id: framingQuizId,
