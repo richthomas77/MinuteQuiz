@@ -129,64 +129,64 @@ export class MemStorage implements IStorage {
     };
     this.quizzes.set(framingQuizId, framingQuiz);
 
-    // Second quiz: GPS Method
+    // Second quiz: GPS Method - Based on authentic study guide content
     const gpsQuizId = randomUUID();
     const gpsQuestions: Question[] = [
       {
         id: randomUUID(),
-        text: "What does GPS stand for in the context of first-minute interactions?",
+        text: "Project Budget Overrun: You need to inform your manager that your project is over budget. You've already spent a lot of time analyzing where the money went, but you're not sure how to prevent it from happening again. Which GPS structured summary is best?",
         options: [
-          { id: randomUUID(), text: "Goals, Process, Success", letter: "A" },
-          { id: randomUUID(), text: "Greet, Present, Summarize", letter: "B" },
-          { id: randomUUID(), text: "Goal, Path, Success metrics", letter: "C" },
-          { id: randomUUID(), text: "Global Positioning System", letter: "D" }
+          { id: randomUUID(), text: "Goal: We need to get the project back on track financially. Problem: Last quarter's spending spiraled out of control due to unexpected material costs and contractor fees, which I have detailed in my report. Solution: I have compiled a detailed report of all expenses for your review.", letter: "A" },
+          { id: randomUUID(), text: "Goal: Maintain the project within its allocated budget. Problem: We have exceeded our budget by 15% this quarter. Solution: I need your guidance on how to reallocate funds or if additional budget can be approved.", letter: "B" },
+          { id: randomUUID(), text: "Goal: Avoid future budget overruns. Problem: We need to understand why the budget was exceeded. Solution: Let's review the historical spending data to pinpoint the exact causes.", letter: "C" },
+          { id: randomUUID(), text: "Goal: Finish the project. Problem: We spent too much money. Solution: We need more money.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "GPS stands for Goal, Path, and Success metrics - a framework for clearly communicating what you want to achieve, how you'll get there, and how you'll know you've succeeded."
+        explanation: "Option B correctly identifies the goal (maintain budget), clearly states the problem (exceeded by 15%), and provides a forward-looking solution seeking guidance. The other options either focus on past analysis rather than future action or are too vague."
       },
       {
         id: randomUUID(),
-        text: "In the GPS method, what should you communicate about the 'Goal'?",
+        text: "Team Morale Issues: You're noticing a significant drop in team morale, leading to decreased productivity. You want to address this with your department head. You have some ideas but want their input. Which GPS structured summary is best?",
         options: [
-          { id: randomUUID(), text: "Your personal career objectives", letter: "A" },
-          { id: randomUUID(), text: "What you want to accomplish in this specific interaction", letter: "B" },
-          { id: randomUUID(), text: "Long-term business strategy", letter: "C" },
-          { id: randomUUID(), text: "Your schedule for the day", letter: "D" }
+          { id: randomUUID(), text: "Goal: Boost team morale and productivity. Problem: Employee engagement surveys show a decline, and there's a lot of gossip about workload. Solution: I propose we implement flexible hours and conduct a team-building retreat, but I'd like your thoughts on these ideas.", letter: "A" },
+          { id: randomUUID(), text: "Goal: Make the team happier. Problem: People are complaining a lot, and work isn't getting done as fast. Solution: We should probably just give everyone a bonus.", letter: "B" },
+          { id: randomUUID(), text: "Goal: Understand the morale problem. Problem: There's a negative atmosphere on the team because of various past incidents. Solution: We need to talk about everything that went wrong leading up to this point.", letter: "C" },
+          { id: randomUUID(), text: "Goal: Get more work done. Problem: The team is unproductive. Solution: We need to enforce stricter deadlines.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "The Goal component focuses specifically on what you want to accomplish in this particular interaction or meeting."
+        explanation: "Option A provides a clear goal (boost morale and productivity), identifies specific evidence of the problem (survey data), and offers actionable solutions while seeking input. The other options are either too vague, focus on past incidents, or propose inappropriate solutions."
       },
       {
         id: randomUUID(),
-        text: "What does the 'Path' element of GPS help communicate?",
+        text: "New Software Implementation Delay: A critical new software system, essential for automating several processes, is three weeks behind schedule. Your team needs to inform senior management. Which GPS structured summary is best?",
         options: [
-          { id: randomUUID(), text: "The physical route to your destination", letter: "A" },
-          { id: randomUUID(), text: "Your career progression plan", letter: "B" },
-          { id: randomUUID(), text: "The process or approach you'll use to achieve the goal", letter: "C" },
-          { id: randomUUID(), text: "The agenda for the entire week", letter: "D" }
+          { id: randomUUID(), text: "Goal: Successfully implement the new software system to automate processes. Problem: The system is three weeks behind schedule due to unexpected integration challenges with legacy systems. Solution: We need approval to extend the deadline and allocate additional developer resources for the next two sprints.", letter: "A" },
+          { id: randomUUID(), text: "Goal: Automate our processes. Problem: The new software is late, but it's not our fault because the vendor delivered late. Solution: We just have to wait for the vendor.", letter: "B" },
+          { id: randomUUID(), text: "Goal: Avoid future delays. Problem: We are behind. Solution: We should find a new vendor next time.", letter: "C" },
+          { id: randomUUID(), text: "Goal: Get the software working. Problem: It's complicated. Solution: We will work harder.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "The Path explains the process, approach, or methodology you'll use to achieve the stated goal, giving others clarity on how the interaction will unfold."
+        explanation: "Option A clearly states the implementation goal, explains the specific problem (integration challenges causing 3-week delay), and requests specific resources needed to move forward. The other options either blame external factors, are too vague, or don't provide actionable solutions."
       },
       {
         id: randomUUID(),
-        text: "Why are 'Success metrics' important in the GPS method?",
+        text: "Customer Complaint About Product Quality: A key customer has complained about a recent batch of your product having quality issues. You need to discuss this with the production manager to find a resolution. Which GPS structured summary is best?",
         options: [
-          { id: randomUUID(), text: "They help you track financial performance", letter: "A" },
-          { id: randomUUID(), text: "They provide clear criteria for knowing when the goal has been achieved", letter: "B" },
-          { id: randomUUID(), text: "They impress others with your analytical skills", letter: "C" },
-          { id: randomUUID(), text: "They help you plan future meetings", letter: "D" }
+          { id: randomUUID(), text: "Goal: Ensure our key customer receives high-quality products. Problem: The latest batch of product XYZ has defects. Solution: We need to investigate the production line immediately to identify the root cause and initiate a recall for the affected batch.", letter: "A" },
+          { id: randomUUID(), text: "Goal: Make the customer happy. Problem: The product is bad. Solution: We should offer them a full refund.", letter: "B" },
+          { id: randomUUID(), text: "Goal: Figure out what went wrong. Problem: Our quality control seems to have failed somewhere down the line. Solution: Let's look at all the production logs from the past month.", letter: "C" },
+          { id: randomUUID(), text: "Goal: Get rid of the bad products. Problem: We have defective products. Solution: We should stop selling them.", letter: "D" }
         ],
         correctAnswerId: "",
-        explanation: "Success metrics provide clear, measurable criteria so everyone knows exactly what constitutes successful completion of the interaction or meeting."
+        explanation: "Option A identifies the customer-focused goal, specifies the product quality problem, and outlines immediate actionable steps (investigation and recall). The other options are either too simplistic, focus on past analysis rather than forward action, or don't address the customer relationship aspect."
       }
     ];
 
-    // Set correct answer IDs for GPS quiz
-    gpsQuestions[0].correctAnswerId = gpsQuestions[0].options[2].id;
-    gpsQuestions[1].correctAnswerId = gpsQuestions[1].options[1].id;
-    gpsQuestions[2].correctAnswerId = gpsQuestions[2].options[2].id;
-    gpsQuestions[3].correctAnswerId = gpsQuestions[3].options[1].id;
+    // Set correct answer IDs for GPS quiz (based on answer key: B, A, A, A)
+    gpsQuestions[0].correctAnswerId = gpsQuestions[0].options[1].id; // B
+    gpsQuestions[1].correctAnswerId = gpsQuestions[1].options[0].id; // A  
+    gpsQuestions[2].correctAnswerId = gpsQuestions[2].options[0].id; // A
+    gpsQuestions[3].correctAnswerId = gpsQuestions[3].options[0].id; // A
 
     const gpsQuiz: Quiz = {
       id: gpsQuizId,
