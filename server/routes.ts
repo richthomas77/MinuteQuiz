@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { insertResourceSchema, insertQuizSchema, insertUserProgressSchema, type Question } from "@shared/schema";
 import multer from "multer";
 import { z } from "zod";
+import { generateBonusQuestions } from "./openai";
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -173,6 +174,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       console.error('Error saving progress:', error);
       res.status(500).json({ message: 'Failed to save progress' });
+    }
+  });
+
+  // Bonus questions route - generates AI-powered additional questions
+  app.post('/api/quizzes/:quizId/bonus-questions', async (req, res) => {
+    try {
+      const quizId = req.params.quizId;
+      if (!quizId) {
+        return res.status(400).json({ message: 'Quiz ID is required' });
+      }
+
+      const quiz = await storage.getQuiz(quizId);
+      if (!quiz) {
+        return res.status(404).json({ message: 'Quiz not found' });
+      }
+
+      const bonusQuestions = await generateBonusQuestions(
+        quiz.title,
+        quiz.description || '',
+        quiz.questions
+      );
+
+      res.json({ questions: bonusQuestions });
+    } catch (error) {
+      console.error('Error generating bonus questions:', error);
+      res.status(500).json({ 
+        message: error instanceof Error ? error.message : 'Failed to generate bonus questions' 
+      });
     }
   });
 
