@@ -8,7 +8,17 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { apiRequest, queryClient } from "@/lib/queryClient";
-import { type Quiz, type Resource, type Question, type InsertUserProgress } from "@shared/schema";
+import { type Quiz, type Resource, type Question } from "../types/schema";
+
+// Type for inserting user progress (simplified for Vercel version)
+interface InsertUserProgress {
+  userId: string;
+  resourceId: string;
+  quizId: string;
+  score: number;
+  totalQuestions: number;
+  answers: Record<string, string>;
+}
 import { useToast } from "@/hooks/use-toast";
 
 export default function Quiz() {

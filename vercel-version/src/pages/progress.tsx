@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BookOpen, Target, TrendingUp, Flame, Clock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { type UserProgress, type Resource } from "@shared/schema";
+import { type UserProgress, type Resource } from "../types/schema";
 
 export default function ProgressPage() {
   const { data: progress, isLoading: progressLoading } = useQuery<UserProgress[]>({

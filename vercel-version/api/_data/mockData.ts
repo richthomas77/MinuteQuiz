@@ -16,7 +16,7 @@ export const mockQuizData = {
       id: "framing-quiz-001",
       resourceId: "tfm-resource-001", 
       title: "Framing: Setting the Stage",
-      description: "Practice proper framing with Context, Intent, and Key Message",
+      description: "Practice proper framing with Context, Intent, and Key Message - essential workplace communication skills",
       questions: [
         {
           id: "q1",
@@ -61,7 +61,7 @@ export const mockQuizData = {
       id: "gps-quiz-001",
       resourceId: "tfm-resource-001",
       title: "GPS Method: Goal, Path, Success", 
-      description: "Test Goal, Problem, Solution structured communication",
+      description: "Test Goal, Problem, Solution structured communication for effective workplace interactions",
       questions: [
         {
           id: "gps1",

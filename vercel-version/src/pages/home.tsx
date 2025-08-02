@@ -3,8 +3,9 @@ import { BookOpen, Play, Book, Plus, Clock, Brain, Target } from "lucide-react";
 import { Link } from "wouter";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { type Resource, type Quiz } from "@shared/schema";
-import bookCoverImage from "@assets/TFM_1754083535157.png";
+import { type Resource, type Quiz } from "../types/schema";
+// Use a placeholder for Vercel deployment - assets should be in public folder
+const bookCoverImage = "/placeholder-book-cover.png";
 
 function QuizList({ resourceId }: { resourceId: string }) {
   const { data: quizzes } = useQuery<Quiz[]>({
